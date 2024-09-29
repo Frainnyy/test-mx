@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARMP: Ratings, Recommended and Reviews</title>
+    <link rel="icon" href="img/armp.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('BG2.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: rgb(43, 41, 41);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(43, 41, 41);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header .home-icon img {
+            width: 175px;
+            height: 125px;
+            cursor: pointer;
+        }
+        .header .search-bar {
+            flex-grow: 1;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .header .search-bar input {
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 24px;
+        }
+        .header .search-bar button {
+            color: white;
+            background-color: #333;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .header .search-bar button img {
+            width: 40px;
+            height: 40px;
+        }
+        .header .contact-link {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .header .contact-link img {
+            width: 120px;
+            height: 120px;
+            margin-right: 8px;
+        }
+        .taskbar {
+            display: flex;
+            background-color: #f1f1f1;
+            padding: 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .taskbar button {
+            flex: 1;
+            border: none;
+            background-color: #fff;
+            padding: 15px 0;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .taskbar button.active {
+            background-color: #333;
+            color: white;
+        }
+        .taskbar button:hover {
+            background-color: #eee;
+        }
+        .carousel {
+    position: relative;
+    max-width: 100%;
+    margin: 40px 0;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 1 0 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.slide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:focus, .next:focus {
+    outline: none;
+    box-shadow: 0 0 10px #333;
+}
+        h1 {
+            color: #ffffff;
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            background-color: rgb(43, 41, 41);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .movie-item {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 250px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .movie-item:hover {
+            transform: scale(1.05);
+        }
+        .movie-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .movie-title {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #f7f7f7;
+    line-height: 1.2;
+    color: #333;
+}
+
+.movie-genre {
+    padding: 5px;
+    font-size: 18px;
+    color: #777;
+    background-color: #f9f9f9;
+    line-height: 1.2;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="project1.html" class="home-icon">
+                <img src="img/armp.ico" alt="Home">
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="หาหนังเลย!!">
+                <button type="submit">
+                    <img src="img/search.png" alt="Search">
+                </button>
+            </div>
+            <a href="https://www.instagram.com/_miiiiiiiiiiiick/" class="contact-link">
+                <img src="img/mick.jpg" alt="Contact">
+            <a href="https://www.instagram.com/prompt_perty" class="contact-link">
+                <img src="img/prompt.png" alt="Contact">
+            <a href="https://www.instagram.com/__plyyyyb" class="contact-link">
+                <img src="img/plyb.jpg" alt="Contact">
+                </a>
+        </div>
+        
+        <div class="taskbar">
+            <button class="active" onclick="window.location.href='project1.html'">HOMEPAGE</button>
+            <button onclick="window.location.href='project2.html'">2024</button>
+            <button onclick="window.location.href='project3.html'">2023</button>
+            <button onclick="window.location.href='project4.html'">2022</button>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="carousel">
+                    <div class="slides">
+                        <div class="slide"><img src="img/oph.jpg" alt="Movie 1" onclick="window.location.href='movie1.html'"></div>
+                        <div class="slide"><img src="img/msn.png" alt="Movie 2" onclick="window.location.href='movie2.html'"></div>
+                        <div class="slide"><img src="img/in2.jpg" alt="Movie 3" onclick="window.location.href='movie3.html'"></div>
+                        <div class="slide"><img src="img/spm.png" alt="Movie 4" onclick="window.location.href='movie4.html'"></div>
+                        <div class="slide"><img src="img/bb.png" alt="Movie 5" onclick="window.location.href='movie5.html'"></div>
+                        <div class="slide"><img src="img/daw.jpg" alt="Movie 6" onclick="window.location.href='movie6.html'"></div>
+                        <div class="slide"><img src="img/d4.jpg" alt="Movie 7" onclick="window.location.href='movie7.html'"></div>
+                        <div class="slide"><img src="img/tg.jpg" alt="Movie 8" onclick="window.location.href='movie8.html'"></div>
+                        <div class="slide"><img src="img/god.jpg" alt="Movie 9" onclick="window.location.href='movie9.html'"></div>
+                        <div class="slide"><img src="img/gb.jpg" alt="Movie 10" onclick="window.location.href='movie10.html'"></div>
+                    </div>
+                    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div>
+        </div>
+
+        <h1><i class="fas fa-film"></i> Recommended Movies</h1>
+        <div class="movie-list">
+            <div class="movie-item">
+                <img src="img/oph.jpg" alt="Movie 1"onclick="window.location.href='movie1.html'">
+                <div class="movie-title">OPPENHEIMER</div>
+                <div class="movie-genre">Biography/History/Drama</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/msn.png" alt="Movie 2"onclick="window.location.href='movie2.html'">
+                <div class="movie-title">MISSION: IMPOSSIBLE - DEAD RECKONING PART ONE</div>
+                <div class="movie-genre">Action/Adventure</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/dp2.jpg" alt="Movie 3"onclick="window.location.href='movie11.html'">
+                <div class="movie-title">Dune: Part Two</div>
+                <div class="movie-genre">Sci-Fi/Adventure</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/in2.jpg" alt="Movie 4"onclick="window.location.href='movie3.html'">
+                <div class="movie-title">Inside Out 2</div>
+                <div class="movie-genre">Kids & Family/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/daw.jpg" alt="Movie 5"onclick="window.location.href='movie6.html'">
+                <div class="movie-title">Deadpool & Wolverine</div>
+                <div class="movie-genre">Action/Adventure/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/god.jpg" alt="Movie 6"onclick="window.location.href='movie9.html'">
+                <div class="movie-title">Godzilla x Kong: The New Empire</div>
+                <div class="movie-genre">Sci-Fi/Action/Adventure</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/tg.jpg" alt="Movie 7"onclick="window.location.href='movie8.html'">
+                <div class="movie-title">Top Gun: Maverick</div>
+                <div class="movie-genre">Action/Adventure</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/d4.jpg" alt="Movie 8"onclick="window.location.href='movie7.html'">
+                <div class="movie-title">Despicable Me 4</div>
+                <div class="movie-genre">Kids & Family/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/thor.jpg" alt="Movie 9"onclick="window.location.href='movie28.html'">
+                <div class="movie-title">Thor: Love and Thunder</div>
+                <div class="movie-genre">Action/Adventure/Fantasy/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/mn1.png" alt="Movie 10"onclick="window.location.href='movie42.html'">
+                <div class="movie-title">Godzilla Minus One</div>
+                <div class="movie-genre">Sci-Fi/Action/Adventure</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/ava.jpeg" alt="Movie 11"onclick="window.location.href='movie24.html'">
+                <div class="movie-title">Avatar: The Way of Water</div>
+                <div class="movie-genre">Sci-Fi/Adventure/Action/Fantasy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/gb.jpg" alt="Movie 12"onclick="window.location.href='movie10.html'">
+                <div class="movie-title">Kung Fu Panda 4</div>
+                <div class="movie-genre">Kids & Family/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/bb.jpg" alt="Movie 13"onclick="window.location.href='movie16.html'">
+                <div class="movie-title">Bad Boys: Ride or Die</div>
+                <div class="movie-genre">Action/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/gu.jpg" alt="Movie 14"onclick="window.location.href='movie25.html'">
+                <div class="movie-title">Minions: The Rise of Gru</div>
+                <div class="movie-genre">Kids & Family/Comedy</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/c.png" alt="Movie 15"onclick="window.location.href='movie47.html'">
+                <div class="movie-title">Creed III</div>
+                <div class="movie-genre">Drama/Action</div>
+            </div>
+            <div class="movie-item">
+                <img src="img/gog.png" alt="Movie 16"onclick="window.location.href='movie48.html'">
+                <div class="movie-title">Guardians of the Galaxy Vol. 3</div>
+                <div class="movie-genre">Sci-Fi/Adventure/Action</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let slideIndex = 0;
+const slideInterval = 1500;
+const totalSlides = document.querySelectorAll('.slide').length;
+const slidesToShow = 5;
+
+function showSlide(index) {
+    const slideWidth = document.querySelector('.slide').clientWidth;
+    const slides = document.querySelector('.slides');
+
+    const newTransformValue = -index * slideWidth;
+    slides.style.transform = `translateX(${newTransformValue}px)`;
+
+    slideIndex = index;
+
+    if (slideIndex >= totalSlides - slidesToShow) {
+        setTimeout(() => {
+            slideIndex = 0;
+            slides.style.transition = 'none'; 
+            slides.style.transform = `translateX(0px)`;
+
+            setTimeout(() => slides.style.transition = 'transform 0.5s ease-in-out', 0);
+        }, slideInterval);
+    }
+}
+
+function moveSlide(n) {
+    slideIndex += n;
+
+    if (slideIndex < 0) {
+        slideIndex = totalSlides - slidesToShow;
+    } else if (slideIndex > totalSlides - slidesToShow) {
+        slideIndex = 0;
+    }
+
+    showSlide(slideIndex);
+}
+
+function startAutoSlide() {
+    setInterval(() => {
+        moveSlide(1);
+    }, slideInterval);
+}
+
+document.querySelector('.prev').addEventListener('click', () => moveSlide(-1));
+document.querySelector('.next').addEventListener('click', () => moveSlide(1));
+
+showSlide(slideIndex);
+startAutoSlide();
+    </script>
+</body>
+</html>
